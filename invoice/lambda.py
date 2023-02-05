@@ -2,6 +2,7 @@ import boto3
 from collections import defaultdict
 from urllib.parse import unquote_plus
 import json
+import base64
 
 def print_labels_and_values(field, keys):
     if "LabelDetection" in field and "ValueDetection" in field:
@@ -43,3 +44,11 @@ def lambda_handler(event, context):
     table = dynamodb.Table('texttract-s478874')
     
     table.put_item(Item=invoice_data)
+    
+    
+    responseObj = {}
+    responseObj['statusCode']  = 200
+    responseObj['headers'] = {}
+    responseObj['body'] = json.dumps(invoice_data)
+    
+    return responseObj

@@ -1,6 +1,6 @@
 <html lang="en">
     <head>
-        <script>            
+        <script>
             async function parse(){
 
                 document.getElementById("result").innerHTML = "Dodawanie pliku..."
@@ -12,9 +12,8 @@
                 document.getElementById("result").innerHTML = "Info"
                 data = await resp.json()
 
-                resp_db = await fetch('https://gp1q182wu2.execute-api.us-east-1.amazonaws.com/read', {method: "GET", body: ""})
-                var result = JSON.stringify(resp_db)
-                document.getElementById("result").innerHTML = result
+                fetch('https://gp1q182wu2.execute-api.us-east-1.amazonaws.com/read', {method: "GET"})
+                .then((res) => {console.log(res);document.getElementById("test").innerHTML = JSON.stringify(res)})
             }
         </script>
         <title>Invoice parser</title>
